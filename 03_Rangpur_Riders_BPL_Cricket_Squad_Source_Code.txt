@@ -1,0 +1,45 @@
+# 1.How many player were hired?
+SELECT COUNT(`Player ID`) FROM squad_information;
+
+# 2.How many Batsman were hired?
+SELECT COUNT(Batter) FROM squad_information
+WHERE Batter='YES';
+
+# 3.How many Bowler were hired?
+SELECT COUNT(Bowler)FROM squad_information
+WHERE Bowler='YES';
+
+# 4.How many All-rounder were hired?
+SELECT COUNT(Allrounder) FROM squad_information
+WHERE Allrounder='YES';
+
+# 5.How many Wicketkeeper were hired?
+SELECT COUNT(Wicketkeeper) FROM squad_information
+WHERE Wicketkeeper='YES';
+
+# 6.How many Countries player were hired?
+SELECT COUNT(DISTINCT Country) FROM squad_information;
+
+# 7.Who is the most run getter batsman and how many runs in the Rangpur Riders squad to consider all kind of t20 cricket?
+SELECT Name, `Total T20 Run` FROM squad_information
+WHERE `Total T20 Run`=(SELECT MAX(`Total T20 Run`) FROM squad_information);
+
+# 8.Who is the most wicket taker bowler and how many wickets in the Rangpur Riders squad to consider all kind of t20 cricket?
+SELECT Name,`Total T20 Wicket` FROM squad_information
+WHERE `Total T20 Wicket`=(SELECT MAX(`Total T20 Wicket`) FROM squad_information);
+
+# 9.Who is most experience player in the Rangpur Riders squad to consider all kind of t20 cricket?
+SELECT Name, `Total T20 Match` FROM squad_information
+WHERE `Total T20 Match`=(SELECT MAX(`Total T20 Match`) FROM squad_information);
+
+# 10.How many Forien player were hired?
+SELECT COUNT(Country) AS Total_Forien_player FROM squad_information
+WHERE Country NOT LIKE 'Bangladesh';
+
+# 11.How many Bangladesh player were hired?
+SELECT COUNT(Country) AS Total_Bangladesh_player FROM squad_information
+WHERE Country LIKE 'Bangladesh';
+
+# 12.How many player were hired by each country?
+SELECT Country, COUNT(Country) FROM squad_information
+GROUP BY Country;
